@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% include 'head.html' %}
+    <title>Bachelor Project - Homepage</title>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% include 'sidebar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    {% if context_basic.search_bar %}
+                    <!-- Topbar Search -->
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    {% endif %}
+                {% include 'top_bar.html' %}
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Homepage</h1>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <div class="col-lg-6 mb-4">
+
+                            <!-- Illustrations -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Announcements</h6>
+                                </div>
+                                
+                                <div class="card-body">
+                                    {% for announcement in context_users.announcements %}
+                                        <div class="text-center">
+                                            <div class="text-s font-weight-bold text-primary mb-1">{{announcement.title}}</div>
+                                        </div>
+                                        <p>
+                                            {{announcement.body}}
+                                        </p>
+                                        <p>
+
+
+                                        </p> 
+                                        <a target="_blank" rel="nofollow" href="{% url 'Announcements' %}">Read more...</a>
+                                        <div class="card-header py-1"></div>
+                                        {% endfor %}
+                                </div>
+                                <a href="{% url 'Announcements' %}" class="btn btn-secondary btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                    <span class="text">View all</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <!-- Approach -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Events</h6>
+                                </div>
+                                <div class="card-body">
+                                    {% for event in context_users.events %}
+                                    <div class="text-center">
+                                        <div class="text-s font-weight-bold text-primary mb-1">{{event.title}}</div>
+                                    </div>
+                                    <p>
+                                        {{event.description}}
+                                    </p>
+                                    <p>
+                                       Event starts at:  {{event.event_datetime}}
+                                    </p>
+                                    
+                                    <a target="_blank" rel="nofollow" href="{% url 'Events' %}">Read more...</a>
+                                    <div class="card-header py-1"></div>
+                                    {% endfor %}
+                                </div>
+                                <a href="{% url 'Events' %}" class="btn btn-secondary btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                    <span class="text">View all</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            {% include 'footer.html' %}
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal -->
+    {% include 'logout_modal.html' %}
+    <!-- End of Logout Modal -->
+
+    <!-- Js scripts -->
+    {% include 'include_js_scripts.html' %}
+    <!-- End of Js scripts -->
+    
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+    <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+
+</body>
+
+</html>

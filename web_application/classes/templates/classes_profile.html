@@ -1,0 +1,517 @@
+{% load static %}
+{% load has_group %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% include 'head.html' %}
+    <title>Thesis Project - Class Profile</title>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% include 'sidebar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                {% include 'top_bar.html' %}
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">{{context_class_profile.class_name}}</h1>
+                    </div>
+                    
+                    <div class="row">
+                        
+                        <div class="col-lg-12 mb-4">
+                            <div class="col-lg-12 col-md-6 mb-10">
+                                {% if request.user|has_group:"(system_admin, admin, manager)" %}
+                                <a href="#" onclick="classEdit('{{context_class_profile.class_name}}');$('#editClassModal').modal('show');" class="btn btn-primary btn-icon-split">
+                                    <span class="text">Edit Class</span>
+                                </a>
+                                {% endif %}
+                                <a href="{% url 'Class Timetable' context_class_profile.portal_id context_class_profile.class_id %}" class="btn btn-warning navbar-nav ml-auto btn-icon-split">
+                                    <span class="text">View Timetable</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% if request.user|has_group:"(system_admin, admin, manager, teacher)" %}
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2 border-left-secondary">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                                    Number of students</div>
+    
+                                                <hr>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{context_class_profile.number_of_students}} Students</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2 border-left-secondary">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                                    Teacher in charge</div>
+                                                    <hr>
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col">
+                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{context_class_profile.assigned_teacher.first_name}} {{context_class_profile.assigned_teacher.last_name}} {{context_class_profile.assigned_teacher.average_grade}}</div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 align-items-right">{% if context_profile.portal_info.most_logins.login_number %} {{context_profile.portal_info.most_logins.login_number}} Logins {% endif %}</div>
+                                                        </div>
+                                                    </div>
+                                            </div> 
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="col-lg-4 col-md-5 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2 border-left-secondary">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                                    Student of honor</div>
+                                                    <hr>
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col">
+                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{context_class_profile.student_of_honor.first_name}} {{context_class_profile.student_of_honor.last_name}} {% if context_class_profile.student_of_honor.first_name %} | {% endif %} {{context_class_profile.student_of_honor.average_grade}}</div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <!-- Messages -->
+                    {% include 'messages.html' %}
+                    <!-- Content Row -->
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-6">
+                            {% if request.user|has_group:"(system_admin, admin, manager)" or context_class_profile.logged_user_is_assigned_teacher == True %}
+                                    <div class="card-header py-3">
+                                        <div class="col-xl-7 col-md-6 mb-10">
+                                            <a href="#" onclick="$('#addStudentModal').modal('show');" class="btn btn-primary btn-icon-split">
+                                                <span class="text">Add Student</span>
+                                            </a>
+                                            <a href="#" onclick="$('#editStudentModal').modal('show');" class="btn btn-primary btn-icon-split">
+                                                <span class="text">Edit Student</span>
+                                            </a>
+                                            <a href="#" onclick="$('#deleteStudentModal').modal('show');" class="btn btn-danger btn-icon-split">
+                                                <span class="text">Delete Student</span>
+                                            </a>
+                                            <a href="#" onclick="$('#editAssignedTeacherModal').modal('show');" class="btn btn-info btn-icon-split">
+                                                <span class="text">Select Assigned Teacher</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                            {% endif %}
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Student's Information</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Email</th> 
+                                                {% if request.user|has_group:"(system_admin, admin, manager, teacher)" %}
+                                                <th>Absences</th>
+                                                <th>Mathematics</th>
+                                                <th>Physics</th>
+                                                <th>Chemistry</th>
+                                                <th>English</th>
+                                                <th>Geography</th>
+                                                <th>History</th>
+                                                <th>Biology</th>
+                                                <th>Average Grade</th>
+                                                {% endif %}                                              
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Email</th> 
+                                                {% if request.user|has_group:"(system_admin, admin, manager, teacher)" %}
+                                                <th>Absences</th>
+                                                <th>Mathematics</th>
+                                                <th>Physics</th>
+                                                <th>Chemistry</th>
+                                                <th>English</th>
+                                                <th>Geography</th>
+                                                <th>History</th>
+                                                <th>Biology</th>
+                                                <th>Average Grade</th>
+                                                {% endif %}
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            {% for student in context_class_profile.student_info %}
+                                            <tr>
+                                                <td>{{student.id}}</td>
+                                                <td>{{student.first_name}}</td>
+                                                <td>{{student.last_name}}</td>
+                                                <td>{{student.email}}</td>
+                                                {% if request.user|has_group:"(system_admin, admin, manager, teacher)" %}
+                                                <td>{{student.absences}}</td>
+                                                <td>{{student.maths}}</td>
+                                                <td>{{student.physics}}</td>
+                                                <td>{{student.chemistry}}</td>
+                                                <td>{{student.english}}</td>
+                                                <td>{{student.geography}}</td>
+                                                <td>{{student.history}}</td>
+                                                <td>{{student.biology}}</td>
+                                                <td>{{student.average_grade}}</td>
+                                                {% endif %}
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                <!-- /.container-fluid -->
+            </div>
+            
+            <!-- End of Main Content -->
+
+        
+        </div>
+        <!-- End of Content Wrapper -->
+        <!-- Footer -->
+        {% include 'footer.html' %}
+        <!-- End of Footer -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal -->
+    {% include 'logout_modal.html' %}
+    <!-- End of Logout Modal -->
+
+    <!-- Js scripts -->
+    {% include 'include_js_scripts.html' %}
+    <script src="{% static 'js/class_profile.js' %}"></script>
+    <!-- End of Js scripts -->
+    
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+    <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+
+    <script>
+        var students = '{{context_class_profile.student_info|escapejs}}';
+    </script>
+
+
+<!-- Edit Class Modal-->
+<div class="modal fade" id="editClassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Class</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <form method='POST' id='edit_class_form' name="edit_class" class="mlsm_second_inner">
+            {% csrf_token %}
+            <div class="p-5">
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='edit_class_name'  type="text" class="form-control form-control-user" id="editClassName"
+                            placeholder="Class name"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="class_profile_action" value="edit_class" class="btn btn-primary">
+                    Edit
+                </button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!-- Add student Modal-->
+<div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add new student</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <form method='POST' id='add_student_form' name="add_student" class="mlsm_second_inner">
+            {% csrf_token %}
+            <div class="p-5">
+                <h5 id="exampleModalLabel">Personal Information</h5>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='add_student_first_name'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="First Name"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='add_student_last_name'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Last Name"></input>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='add_student_absences'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Absences"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='add_student_email'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Email"></input>
+                    </div>
+                </div>
+                <hr>
+                <h5 id="exampleModalLabel">Marks</h5>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='add_student_maths'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Mathematics"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='add_student_physics'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Physics"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='add_student_chemistry'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Chemistry"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='add_student_english'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="English"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='add_student_geography'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Geography"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='add_student_history'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="History"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='add_student_biology'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Biology"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="class_profile_action" value="add_student" class="btn btn-primary">
+                    Create
+                </button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+
+<!-- Edit student Modal-->
+<div class="modal fade" id="editStudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit student</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <form method='POST' id='add_student_form' name="add_student" class="mlsm_second_inner">
+            {% csrf_token %}
+            <div class="p-5">
+                <h5 id="exampleModalLabel">Personal Information</h5>
+                <div class="col-sm-6">
+                    <select id="editStudentChoice" name="student_choice" class="dropdown mb-4 btn btn-secondary dropdown-toggle">
+                        <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                            <option value="" disabled selected hidden>Select Student</option>
+                            {% for student in context_class_profile.student_info %}
+                            <option value="{{student.email}}">{{student.id}}| {{student.first_name}} {{student.last_name}}</option>
+                            {% endfor %}
+                        </div>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='edit_student_first_name'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="First Name"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='edit_student_last_name'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Last Name"></input>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='edit_student_absences'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Absences"></input>
+                    </div>
+                </div>
+                <hr>
+                <h5 id="exampleModalLabel">Marks</h5>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='edit_student_maths'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Mathematics"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='edit_student_physics'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Physics"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='edit_student_chemistry'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Chemistry"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='edit_student_english'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="English"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='edit_student_geography'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Geography"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='edit_student_history'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="History"></input>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='edit_student_biology'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Biology"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="class_profile_action" value="edit_student" class="btn btn-primary">
+                    Edit
+                </button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+
+<!-- Delete student Modal-->
+<div class="modal fade" id="deleteStudentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete student</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <form method='POST' id='create_class_form' name="create_class" class="mlsm_second_inner">
+            {% csrf_token %}
+            <div class="p-5">
+                <select id="editStudentChoice" name="delete_student_choice" class="dropdown mb-4 btn btn-secondary dropdown-toggle">
+                    <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                        <option value="" disabled selected hidden>Select Student</option>
+                        {% for student in context_class_profile.student_info %}
+                        <option value="{{student.email}}">{{student.id}}| {{student.first_name}} {{student.last_name}}</option>
+                        {% endfor %}
+                    </div>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="class_profile_action" value="delete_student" class="btn btn-primary">
+                    Delete
+                </button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!-- Edit assigned teacher Modal-->
+<div class="modal fade" id="editAssignedTeacherModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Assigned Teacher</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <form method='POST' id='create_class_form' name="create_class" class="mlsm_second_inner">
+            {% csrf_token %}
+            <div class="p-5">
+                <select id="editAssignedTeacherChoice" name="edit_assigned_teacher_choice" class="dropdown mb-4 btn btn-secondary dropdown-toggle">
+                    <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                        <option value="" disabled selected hidden>Select Assigned Teacher</option>
+                        {% for teacher in context_class_profile.teacher_list %}
+                        <option value="{{teacher.id}}">{{teacher.id}}| {{teacher.first_name}} {{teacher.last_name}}</option>
+                        {% endfor %}
+                    </div>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="class_profile_action" value="edit_assigned_teacher" class="btn btn-primary">
+                    Edit
+                </button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+
+</body>
+</html>

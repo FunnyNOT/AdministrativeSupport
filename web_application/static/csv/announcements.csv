@@ -1,0 +1,16 @@
+﻿title,body,is_active,created_at,created_by_id,portal_id,visible_to_students
+Newsletter January,January newsletter announcement to inform users about the news happened in January,1,2022-10-01 08:00:00,1,1,0
+Newsletter April,April newsletter announcement to inform users about the news happened in April,1,2022-10-01 08:00:00,2,1,0
+Newsletter June,June newsletter announcement to inform users about the news happened in June,1,2022-10-01 08:00:00,3,2,0
+Newsletter August,August newsletter announcement to inform users about the news happened in August,1,2022-10-01 08:00:00,4,3,0
+Newsletter August,August newsletter announcement to inform users about the news happened in August,1,2022-10-01 08:00:00,5,4,0
+Newsletter August,August newsletter announcement to inform users about the news happened in August,1,2022-10-01 08:00:00,6,5,0
+Newsletter February,February newsletter announcement to inform users about the news happened in February,1,2022-10-01 08:00:00,1,1,0
+Newsletter March,March newsletter announcement to inform users about the news happened in March,1,2022-10-01 08:00:00,1,1,0
+Newsletter May,May newsletter announcement to inform users about the news happened in May,1,2022-10-01 08:00:00,2,1,0
+Newsletter July,July newsletter announcement to inform users about the news happened in July,1,2022-10-01 08:00:00,3,2,0
+Newsletter September,September newsletter announcement to inform users about the news happened in September,1,2022-10-01 08:00:00,4,3,0
+Newsletter May,May newsletter announcement to inform users about the news happened in May,1,2022-10-01 08:00:00,5,4,0
+Newsletter June,June newsletter announcement to inform users about the news happened in June,1,2022-10-01 08:00:00,6,5,0
+Announcement for students,Student announcement that includes information that students would want to read and learn about,1,2022-10-01 08:00:01,1,1,1
+Announcement for students - second -,Second student announcement that includes information that students would want to read and learn about,1,2022-10-01 08:00:01,1,1,1

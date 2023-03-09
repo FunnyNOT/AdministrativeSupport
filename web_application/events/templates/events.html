@@ -1,0 +1,282 @@
+{% load static %}
+{% load has_group %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% include 'head.html' %}
+    <title>Thesis Project - Events</title>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% include 'sidebar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    {% if context_basic.search_bar %}
+                    <!-- Topbar Search -->
+                    <form id="Search" method="GET" value="{{request.GET.q}}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input name="search_value"  type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    {% endif %}
+                {% include 'top_bar.html' %}
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Events</h1>
+                    </div>
+                    {% if request.user|has_group:"(system_admin, admin, manager, teacher)" %}
+                    <div class="row">
+                        <div class="col-lg-10 mb-4">
+                            <div class="col-xl-7 col-md-6 mb-10">
+                                <a href="#" onclick="$('#createEventModal').modal('show');" class="btn btn-primary btn-icon-split">
+                                    <span class="text">Create Event</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <!-- Messages -->
+                    {% include 'messages.html' %}
+                    <!-- Content Row -->
+                    {% for event in context_events %}
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">{{event.title}}</h6>
+                            {% if request.user|has_group:"(system_admin, admin, manager)" %}
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                    aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#" onclick="editEvent('{{event.id}}', '{{event.title|escapejs}}', '{{event.description|escapejs}}', '{{event.visible_to_students}}');$('#editEventModal').modal('show');">Edit</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" onclick="deleteEvent('{{event.id}}');$('#deleteEventModal').modal('show');">Delete</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            {{event.description}}
+                        </div>
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <div style="font-weight: bold;" >
+                                Starts at:
+                                {{event.event_datetime}}
+                            </div>
+                            <br>
+                            Created by:
+                            {{event.created_by_first_name}}
+                            {{event.created_by_last_name}}
+                            {% if request.user|has_group:"(system_admin, admin)" %}
+                            <br>
+                            Created at:
+                            {{event.portal_name}}
+                            portal
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                <!-- /.container-fluid -->
+                </div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+        <!-- Footer -->
+        {% include 'footer.html' %}
+        <!-- End of Footer -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal -->
+    {% include 'logout_modal.html' %}
+    <!-- End of Logout Modal -->
+
+    <!-- Js scripts -->
+    {% include 'include_js_scripts.html' %}
+    <script src="{% static 'js/events.js' %}"></script>
+    <!-- End of Js scripts -->
+    
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+    <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+
+
+
+
+
+<!-- Create Event Modal-->
+<div class="modal fade" id="createEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create Event</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <form method='POST' id='create_event_form' name="create_event" class="mlsm_second_inner">
+            {% csrf_token %}
+            <div class="p-5">
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='create_event_title' style="width:400px;" type="text" class="form-control form-control-user" id="create_event_title"
+                            placeholder="Event Title"></input>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <textarea name='create_event_description' style="width:400px;height:200px;font-size:14pt;" type="text" class="form-control form-control-user" id="create_event_description"
+                            placeholder="Event Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div>
+                            Event DateTime in UTC
+                        </div>
+                        <input id="create_event_datetime" name="create_event_datetime"  type="datetime-local">
+                    </div>
+                </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="custom-control custom-checkbox small">
+                                <input name="visible_to_students" type="checkbox" class="custom-control-input" id="isActive1">
+                                <label class="custom-control-label" for="isActive1">Visible to students</label>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="events_action" value="create_event" class="btn btn-primary">
+                    Create
+                </button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!-- Edit Event Modal-->
+<div class="modal fade" id="editEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Event</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <form method='POST' id='edit_event_form' name="edit_event" class="mlsm_second_inner">
+            {% csrf_token %}
+            <div class="p-5">
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='edit_event_title' style="width:400px;" type="text" class="form-control form-control-user" id="edit_event_title"
+                            placeholder="Event Title"></input>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <textarea name='edit_event_description' style="width:400px;height:200px;font-size:14pt;" type="text" class="form-control form-control-user" id="edit_event_description"
+                            placeholder="Event Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div>
+                            Event DateTime in UTC
+                        </div>
+                        <input id="edit_event_datetime" name="edit_event_datetime"  type="datetime-local">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="custom-control custom-checkbox small">
+                            <input name="edit_event_visible_to_students" type="checkbox" class="custom-control-input" id="edit_event_visible_to_students">
+                            <label class="custom-control-label" for="edit_event_visible_to_students">Visible to students</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input name="edit_event_id" id="edit_event_id" hidden="True" ></input>
+            <div class="modal-footer">
+                <button type="submit" name="events_action" value="edit_event" class="btn btn-primary">
+                    Edit
+                </button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!-- Delete Event Modal-->
+<div class="modal fade" id="deleteEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Event Delete</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">Are you sure you want to delete this event?</div>
+        <div class="modal-footer">
+            <form method='POST' id="change_status_post" class="mlsm_second_inner">
+                {% csrf_token %}
+                <input name="delete_event_id" id="delete_event_id" hidden="True"> </input>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" name="events_action" value="delete_event" class="btn btn-primary">Confirm</a>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

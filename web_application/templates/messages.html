@@ -1,0 +1,22 @@
+<script>
+    function hidediv(){
+
+        document.getElementById('system_messages').style.visibility='hidden'
+    };
+
+    setTimeout("hidediv()", 5000);
+</script>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div id='system_messages' class="btn btn-danger btn-block">
+                <span class="text">{{ message }}</span>
+            </div>
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div id='system_messages' class="btn btn-success btn-block">
+                <span class="text">{{ message }}</span>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}

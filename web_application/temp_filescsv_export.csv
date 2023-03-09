@@ -1,0 +1,140 @@
+email,first_name,last_name,is_superuser,is_active,portal_name,role
+admin@email.com,Leonidas,Oikonomou,1,1,Admin Portal,admin
+user1@email.com,Mikail,Cardenas,0,1,Summit Academy,manager
+user2@email.com,Noel,Edge,0,1,Mountainridge Institute,manager
+user3@email.com,Simra,Orozco,0,1,Silver Oak School,manager
+user4@email.com,Muhammed,Hume,0,1,Panorama Secondary School,manager
+user5@email.com,Regan,Grant,0,1,Worcester Secondary School,manager
+student1@email.com,Edith,North,0,1,Summit Academy,student
+student2@email.com,Ethel,Friedman,0,1,Summit Academy,student
+student3@email.com,Adam,Kirk,0,1,Summit Academy,student
+student4@email.com,Hasnain,Narnard,0,1,Summit Academy,student
+student5@email.com,Anderson,House,0,1,Summit Academy,student
+student6@email.com,Kush,Hill,0,1,Summit Academy,student
+student7@email.com,Sian,Turnbull,0,1,Summit Academy,student
+student8@email.com,Eamon,Krause,0,1,Summit Academy,student
+student9@email.com,Usama,Carroll,0,1,Summit Academy,student
+student10@email.com,Kris,Smith,0,1,Summit Academy,student
+student11@email.com,Kara,Stephenson,0,1,Summit Academy,student
+student12@email.com,Rio,Mackenzie,0,1,Summit Academy,student
+student13@email.com,Corban,Koch,0,1,Summit Academy,student
+student14@email.com,Marlene,chaney,0,1,Summit Academy,student
+student15@email.com,Sebastian,Merrill,0,1,Summit Academy,student
+student16@email.com,Yuvaan,Mckinney,0,1,Summit Academy,student
+student17@email.com,Mark,Shaffer,0,1,Summit Academy,student
+student18@email.com,Taslima,Wade,0,1,Summit Academy,student
+student19@email.com,Kirk,Conroy,0,1,Summit Academy,student
+student20@email.com,Gurpreet,Boyd,0,1,Summit Academy,student
+student21@email.com,Mandeep,Stein,0,1,Summit Academy,student
+student22@email.com,Alvin,Hamilton,0,1,Summit Academy,student
+student23@email.com,Cecilia,Lyon,0,1,Summit Academy,student
+student24@email.com,Hayden,Carroll,0,1,Summit Academy,student
+student25@email.com,Lily,Morley,0,1,Summit Academy,student
+student26@email.com,Marta,Bernard,0,1,Summit Academy,student
+student27@email.com,Tracy,Rice,0,1,Summit Academy,student
+student28@email.com,Sufyaan,Deleon,0,1,Summit Academy,student
+student29@email.com,Tamar,Bolton,0,1,Summit Academy,student
+student30@email.com,Roisin,Huffman,0,1,Summit Academy,student
+student31@email.com,Ruby,Nunez,0,1,Mountainridge Institute,student
+student32@email.com,Amiyah,Steadman,0,1,Mountainridge Institute,student
+student33@email.com,Fleyr,Gonzales,0,1,Mountainridge Institute,student
+student34@email.com,Harper,Correa,0,1,Mountainridge Institute,student
+student35@email.com,Amanah,Millington,0,1,Mountainridge Institute,student
+student36@email.com,Sky,Lawrence,0,1,Mountainridge Institute,student
+student37@email.com,Alessia,Lindsey,0,1,Mountainridge Institute,student
+student38@email.com,Maxime,Middleton,0,1,Mountainridge Institute,student
+student39@email.com,Julian,Fischer,0,1,Mountainridge Institute,student
+student40@email.com,Nafisa,Michael,0,1,Mountainridge Institute,student
+student41@email.com,Orlaith,Correa,0,1,Mountainridge Institute,student
+student42@email.com,Edith,North,0,1,Mountainridge Institute,student
+student43@email.com,Ethel,Friedman,0,1,Mountainridge Institute,student
+student44@email.com,Adam,Kirk,0,1,Mountainridge Institute,student
+student45@email.com,Hasnain,Narnard,0,1,Mountainridge Institute,student
+student46@email.com,Anderson,House,0,1,Mountainridge Institute,student
+student47@email.com,Kush,Hill,0,1,Mountainridge Institute,student
+student48@email.com,Sian,Turnbull,0,1,Mountainridge Institute,student
+student49@email.com,Eamon,Krause,0,1,Mountainridge Institute,student
+student50@email.com,Usama,Carroll,0,1,Mountainridge Institute,student
+student51@email.com,Kris,Smith,0,1,Mountainridge Institute,student
+student52@email.com,Kara,Stephenson,0,1,Mountainridge Institute,student
+student53@email.com,Rio,Mackenzie,0,1,Mountainridge Institute,student
+student54@email.com,Corban,Koch,0,1,Mountainridge Institute,student
+student55@email.com,Marlene,chaney,0,1,Mountainridge Institute,student
+student56@email.com,Sebastian,Merrill,0,1,Mountainridge Institute,student
+student57@email.com,Yuvaan,Mckinney,0,1,Mountainridge Institute,student
+student58@email.com,Mark,Shaffer,0,1,Mountainridge Institute,student
+student59@email.com,Taslima,Wade,0,1,Mountainridge Institute,student
+student60@email.com,Kirk,Conroy,0,1,Mountainridge Institute,student
+student61@email.com,Gurpreet,Boyd,0,1,Silver Oak School,student
+student62@email.com,Mandeep,Stein,0,1,Silver Oak School,student
+student63@email.com,Alvin,Hamilton,0,1,Silver Oak School,student
+student64@email.com,Cecilia,Lyon,0,1,Silver Oak School,student
+student65@email.com,Hayden,Carroll,0,1,Silver Oak School,student
+student66@email.com,Lily,Morley,0,1,Silver Oak School,student
+student67@email.com,Marta,Bernard,0,1,Silver Oak School,student
+student68@email.com,Tracy,Rice,0,1,Silver Oak School,student
+student69@email.com,Sufyaan,Deleon,0,1,Silver Oak School,student
+student70@email.com,Tamar,Bolton,0,1,Silver Oak School,student
+student71@email.com,Roisin,Huffman,0,1,Silver Oak School,student
+student72@email.com,Ruby,Nunez,0,1,Silver Oak School,student
+student73@email.com,Amiyah,Steadman,0,1,Silver Oak School,student
+student74@email.com,Fleyr,Gonzales,0,1,Silver Oak School,student
+student75@email.com,Harper,Correa,0,1,Silver Oak School,student
+student76@email.com,Amanah,Millington,0,1,Silver Oak School,student
+student77@email.com,Sky,Lawrence,0,1,Silver Oak School,student
+student78@email.com,Alessia,Lindsey,0,1,Silver Oak School,student
+student79@email.com,Maxime,Middleton,0,1,Silver Oak School,student
+student80@email.com,Julian,Fischer,0,1,Silver Oak School,student
+student81@email.com,Nafisa,Michael,0,1,Silver Oak School,student
+student82@email.com,Orlaith,Correa,0,1,Silver Oak School,student
+student83@email.com,Hasnain,Narnard,0,1,Silver Oak School,student
+student84@email.com,Anderson,House,0,1,Silver Oak School,student
+student85@email.com,Kush,Hill,0,1,Silver Oak School,student
+student86@email.com,Sian,Turnbull,0,1,Silver Oak School,student
+student87@email.com,Eamon,Krause,0,1,Silver Oak School,student
+student88@email.com,Usama,Carroll,0,1,Silver Oak School,student
+student89@email.com,Kris,Smith,0,1,Silver Oak School,student
+student90@email.com,Kara,Stephenson,0,1,Silver Oak School,student
+student91@email.com,Rio,Mackenzie,0,1,Panorama Secondary School,student
+student92@email.com,Corban,Koch,0,1,Panorama Secondary School,student
+student93@email.com,Marlene,chaney,0,1,Panorama Secondary School,student
+student94@email.com,Sebastian,Merrill,0,1,Panorama Secondary School,student
+student95@email.com,Yuvaan,Mckinney,0,1,Panorama Secondary School,student
+student96@email.com,Mark,Shaffer,0,1,Panorama Secondary School,student
+student97@email.com,Taslima,Wade,0,1,Panorama Secondary School,student
+student98@email.com,Kirk,Conroy,0,1,Panorama Secondary School,student
+student99@email.com,Gurpreet,Boyd,0,1,Panorama Secondary School,student
+student100@email.com,Mandeep,Stein,0,1,Panorama Secondary School,student
+student101@email.com,Alvin,Hamilton,0,1,Panorama Secondary School,student
+student102@email.com,Cecilia,Lyon,0,1,Panorama Secondary School,student
+student103@email.com,Hayden,Carroll,0,1,Panorama Secondary School,student
+student104@email.com,Lily,Morley,0,1,Panorama Secondary School,student
+student105@email.com,Marta,Bernard,0,1,Panorama Secondary School,student
+student106@email.com,Tracy,Rice,0,1,Panorama Secondary School,student
+student107@email.com,Sufyaan,Deleon,0,1,Panorama Secondary School,student
+student108@email.com,Tamar,Bolton,0,1,Panorama Secondary School,student
+student109@email.com,Roisin,Huffman,0,1,Panorama Secondary School,student
+student110@email.com,Ruby,Nunez,0,1,Panorama Secondary School,student
+student111@email.com,Amiyah,Steadman,0,1,Panorama Secondary School,student
+student112@email.com,Fleyr,Gonzales,0,1,Panorama Secondary School,student
+student113@email.com,Harper,Correa,0,1,Panorama Secondary School,student
+student114@email.com,Amanah,Millington,0,1,Panorama Secondary School,student
+student115@email.com,Sky,Lawrence,0,1,Panorama Secondary School,student
+student116@email.com,Alessia,Lindsey,0,1,Panorama Secondary School,student
+student117@email.com,Maxime,Middleton,0,1,Panorama Secondary School,student
+student118@email.com,Julian,Fischer,0,1,Panorama Secondary School,student
+student119@email.com,Nafisa,Michael,0,1,Panorama Secondary School,student
+student120@email.com,Orlaith,Correa,0,1,Panorama Secondary School,student
+leogr1996@gmail.com,Leonidas,Oikonomou,0,1,Summit Academy,student
+system_admin@email.com,Admin,System,1,1,Admin Portal,system_admin
+user6@email.com,Liam,Dickens,0,1,Summit Academy,teacher
+user7@email.com,Chris,Small,0,1,Mountainridge Institute,teacher
+user8@email.com,Jameson,Wilde,0,1,Silver Oak School,teacher
+user9@email.com,Tyreke,Muir,0,1,Panorama Secondary School,teacher
+user10@email.com,Iwan,Shah,0,1,Worcester Secondary School,teacher
+user11@email.com,April,Beaumont,0,1,Summit Academy,teacher
+user12@email.com,Luciana,Haworth,0,1,Mountainridge Institute,teacher
+user13@email.com,Eliana,Healy,0,1,Silver Oak School,teacher
+user14@email.com,shiloh,Glover,0,1,Panorama Secondary School,teacher
+user15@email.com,Darragh,Flores,0,1,Worcester Secondary School,teacher
+user16@email.com,Theodora,Mccormick,0,1,Summit Academy,teacher

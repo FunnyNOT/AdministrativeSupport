@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% include 'head.html' %}
+    <title>Bachelor Project - Portals</title>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% include 'sidebar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    {% if context_basic.search_bar %}
+                    <!-- Topbar Search -->
+                    <form id="Search" method="GET" value="{{request.GET.q}}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input name="search_value"  type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    {% endif %}
+                {% include 'top_bar.html' %}
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Portals</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-10 mb-4">
+                            <div class="col-xl-7 col-md-6 mb-10">
+                                <a href="#" onclick="$('#createPortalModal').modal('show');" class="btn btn-primary btn-icon-split">
+                                    <span class="text">Create Portal</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Messages -->
+                    {% include 'messages.html' %}
+                    <!-- Content Row -->
+                    <div class="card shadow mb-4">
+                        <div class="row">
+                            {% for portal in portal_view %}
+                                <div class="col-lg-6 mb-4">
+                                    <div class="col-xl-10 col-md-10 mb-10">
+                                        <div class="card border-left-primary shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <a class="text-l font-weight-bold text-center text-primary mb-1" href="{% url 'Portal profile' portal.id %}">
+                                                            {{ portal.name }}</a>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ portal.users }} Users</div>
+                                                    </div>
+                                                    <div class="row no-gutters align-items-right">
+                                                        <div class="mb-0 row no-gutters align-items-right">
+                                                            <a onclick="changeStatus('{{portal.id}}');$('#activityModal').modal('show');" class="btn {% if portal.is_active %}btn-success {% else %} btn-danger {% endif%} btn-icon-split">
+                                                                <span class="text">{% if portal.is_active %}Active {% else %} Inactive {% endif%}</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                <!-- /.container-fluid -->
+            </div>
+            
+            <!-- End of Main Content -->
+
+        
+        </div>
+        <!-- End of Content Wrapper -->
+        <!-- Footer -->
+        {% include 'footer.html' %}
+        <!-- End of Footer -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal -->
+    {% include 'logout_modal.html' %}
+    <!-- End of Logout Modal -->
+
+    <!-- Js scripts -->
+    {% include 'include_js_scripts.html' %}
+    <script src="{% static 'js/portals.js' %}"></script>
+    <!-- End of Js scripts -->
+    
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+    <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+
+
+
+
+
+<!-- Create Portal Modal-->
+<div class="modal fade" id="createPortalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create New Portal</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <form method='POST' id='create_portal_form' name="create_portal" class="mlsm_second_inner">
+            {% csrf_token %}
+            <div class="p-5">
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input name='portal_name_1'  type="text" class="form-control form-control-user" id="exampleFirstName"
+                            placeholder="Portal Name"></input>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="custom-control custom-checkbox small">
+                            <input name="is_active_1" type="checkbox" class="custom-control-input" id="isActive1">
+                            <label class="custom-control-label" for="isActive1">Is Active</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" name="portals_action" value="create_portal" class="btn btn-primary">
+                    Create
+                </button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!-- Portal Activity Change-->
+<div class="modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Portal Activity Change</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">Are you sure you want to change the activity of this portal?</div>
+        <div class="modal-footer">
+            <form method='POST' id="change_status_post" class="mlsm_second_inner">
+                {% csrf_token %}
+                <input type="hidden" name="portal_id_status" id="portal_id_status">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" name="portals_action" value="change_status" class="btn btn-primary">Confirm</a>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

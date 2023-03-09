@@ -1,0 +1,4 @@
+.env
+website_application/static/pdf
+email_configuration.py
+secret_keys.py

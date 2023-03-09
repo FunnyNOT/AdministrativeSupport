@@ -1,0 +1,15 @@
+﻿title,description,is_active,event_datetime,created_at,created_by_id,portal_id,visible_to_students
+Event January,January event to discuss things that are going to happen in January,1,2024-10-01 08:00:00,2022-10-01 08:00:00,1,1,0
+Event February,Febraury event to discuss things that are going to happen in February,1,2024-10-01 08:00:00,2022-10-01 08:00:00,2,1,0
+Event March,March event to discuss things that are going to happen in March,1,2024-10-01 08:00:00,2022-10-01 08:00:00,3,2,0
+Event April,April event to discuss things that are going to happen in April,1,2024-10-01 08:00:00,2022-10-01 08:00:00,4,3,0
+Event May,May event to discuss things that are going to happen in May,1,2024-10-01 08:00:00,2022-10-01 08:00:00,5,4,0
+Event June,June event to discuss things that are going to happen in June,1,2024-10-01 08:00:00,2022-10-01 08:00:00,6,5,0
+Event July,July event to discuss things that are going to happen in July,1,2024-10-01 08:00:00,2022-10-01 08:00:00,1,1,0
+Event August,August event to discuss things that are going to happen in August,1,2024-10-01 08:00:00,2022-10-01 08:00:00,2,1,0
+Event September,September event to discuss things that are going to happen in September,1,2024-10-01 08:00:00,2022-10-01 08:00:00,3,2,0
+Event October,October event to discuss things that are going to happen in October,1,2024-10-01 08:00:00,2022-10-01 08:00:00,4,3,0
+Event November,November event to discuss things that are going to happen in November,1,2024-10-01 08:00:00,2022-10-01 08:00:00,5,4,0
+Event December,December event to discuss things that are going to happen in December,1,2024-10-01 08:00:00,2022-10-01 08:00:00,6,5,0
+Student Event,Event for students that all the students have to attend,1,2024-10-01 08:00:00,2022-10-01 08:00:00,1,1,1
+Student Event - second,Second event for students that all the students have to attend,1,2024-10-01 08:00:00,2022-10-01 08:00:00,1,1,1

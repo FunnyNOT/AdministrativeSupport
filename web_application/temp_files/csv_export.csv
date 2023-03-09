@@ -1,0 +1,7 @@
+email,first_name,last_name,is_superuser,is_active,portal_name,role
+system_admin@email.com,SystemAdmin,SystemAdmin,1,1,admin_portal,system_admin
+admin@email.com,Admin,User,1,1,admin_portal,admin
+manager@email.com,Manager,Manager,0,1,School A,manager
+teacher@email.com,Teacher,Teacher,0,1,School A,teacher
+leonidas.oikonomou17@gmail.com,Leonidas,Oikonomou,0,1,School A,manager
+leonidas.oikonomou17+2@gmail.com,Leonidas,Oikonomou,0,1,School A,teacher

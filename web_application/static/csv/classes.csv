@@ -1,0 +1,25 @@
+name,portal_id,created_at,created_by_id,assigned_teacher
+First Class,2,2022-10-01 08:00:00,3,8
+Second Class,2,2022-10-01 08:00:00,3,13
+Third Class,2,2022-10-01 08:00:00,3,18
+Fourth Class,2,2022-10-01 08:00:00,3,8
+Fifth Class,2,2022-10-01 08:00:00,3,13
+Sixth Class,2,2022-10-01 08:00:00,3,18
+First Class,3,2022-10-01 08:00:00,4,9
+Second Class,3,2022-10-01 08:00:00,4,14
+Third Class,3,2022-10-01 08:00:00,4,9
+Fourth Class,3,2022-10-01 08:00:00,4,14
+Fifth Class,3,2022-10-01 08:00:00,4,9
+Sixth Class,3,2022-10-01 08:00:00,4,14
+First Class,4,2022-10-01 08:00:00,5,10
+Second Class,4,2022-10-01 08:00:00,5,15
+Third Class,4,2022-10-01 08:00:00,5,10
+Fourth Class,4,2022-10-01 08:00:00,5,15
+Fifth Class,4,2022-10-01 08:00:00,5,10
+Sixth Class,4,2022-10-01 08:00:00,5,15
+First Class,5,2022-10-01 08:00:00,6,11
+Second Class,5,2022-10-01 08:00:00,6,16
+Third Class,5,2022-10-01 08:00:00,6,11
+Fourth Class,5,2022-10-01 08:00:00,6,16
+Fifth Class,5,2022-10-01 08:00:00,6,11
+Sixth Class,5,2022-10-01 08:00:00,6,16

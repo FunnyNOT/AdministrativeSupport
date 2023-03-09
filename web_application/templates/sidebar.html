@@ -1,0 +1,75 @@
+{% load has_group %}
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center">
+        <div class="sidebar-brand-text mx-3"> {{ context_basic.portal }}</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    {% if request.user|has_group:"(manager, teacher, student)" %}
+        <div class="sidebar-heading">
+            Generic
+        </div>
+    {% endif %}
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'Homepage' %}">
+            <i class="fas"></i>
+            <span>Homepage</span></a>
+    </li>
+    {% if request.user|has_group:"(manager, teacher, student)" %}
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'Portal profile' context_basic.portal_id %}">
+                <i class="fas"></i>
+                <span>My Portal</span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'Classes' context_basic.portal_id %}">
+                <i class="fas"></i>
+                <span>Classes</span></a>
+        </li>
+
+    {% endif %}
+    {% if request.user|has_group:"(system_admin, admin)" %}
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Administration
+        </div>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'Portals' %}">
+                <i class="fas "></i>
+                <span>Portals</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'Users' %}">
+                <i class="fas "></i>
+                <span>Users</span></a>
+        </li>
+    {% endif %}
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        News
+    </div>
+    
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'Announcements' %}">
+            <i class="fas "></i>
+            <span>Announcements</span></a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'Events' %}">
+            <i class="fas "></i>
+            <span>Events</span></a>
+    </li>
+
+</ul>
+<!-- End of Sidebar -->
