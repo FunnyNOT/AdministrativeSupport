@@ -36,7 +36,7 @@ The primary purpose of this application is to simplify and automate administrati
 - Student Management: Efficiently manage student records, including attendance and grades
 - Streamline the management of class scheduling.
 - Reporting and Analytics: Generate comprehensive reports and analytics on various aspects of school administration to support decision-making processes.
-- Announcements and Events forbetter communication of activities.
+- Announcements and Events for better communication of activities.
 
 ## Representation of the relationships
                   School Administrators
