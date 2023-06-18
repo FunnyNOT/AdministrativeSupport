@@ -82,7 +82,7 @@ The primary purpose of this application is to simplify and automate administrati
 
 ## Usage Examples
 
-- Communication and Collaboration:The website application can serve as a platform for communication and collaboration among teachers, students, and administrators. It includes features such as and announcement and event boards to facilitate effective communication and engagement.
+- Communication and Collaboration:The website application can serve as a platform for communication and collaboration among teachers, students, and administrators. It includes features such as announcement and event boards to facilitate effective communication and engagement.
 - Resource Management: The website application can help administrators keep track of school resources such as classrooms, equipment, and textbooks. It can provide a reservation system for scheduling resource usage and ensure efficient allocation of resources.
 - Reporting and Analytics: The website application can generate various reports and analytics to provide insights into student performance, attendance trends, enrollment statistics, and other relevant metrics. These reports can support informed decision-making by administrators.
 - Attendance Tracking: The website application can automate the process of tracking student attendance.
