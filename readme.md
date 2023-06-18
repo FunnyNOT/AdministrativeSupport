@@ -92,7 +92,7 @@ The primary purpose of this application is to simplify and automate administrati
 ## Future Enhancements
 
 - Course and Curriculum Management: The application could facilitate the management of courses and curriculum by allowing administrators to create and update course schedules, assign teachers to specific subjects, define grading criteria, and track curriculum progress.
-- Attendance Tracking: The application could provide a convenient interface for teachers generate attendance reports, and send automated notifications to parents or guardians in case of absenteeism.
+- Attendance Tracking: The application could provide a convenient interface for teachers to generate attendance reports, and send automated notifications to parents or guardians in case of absenteeism.
 - Communication and collaboration: The website application could include a messaging system.
 - Notification system
 - File management system: The website application could include a file management system that allows administrators to share files with their teachers and/or students.
